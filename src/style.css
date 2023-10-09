@@ -21,7 +21,8 @@ body
 
 h1{
     text-align: center;
-    margin-top: 50%;
+    margin-top: 50vh;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color:orange;
+    
 }

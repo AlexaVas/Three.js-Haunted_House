@@ -25,7 +25,7 @@ canvas.style.visibility = "collapse";
 
 window.onload = () => {
   canvas.style.visibility = "visible";
-  loadingAnimation.remove;
+  loadingAnimation.remove();
 
   gui = new dat.GUI();
   gui.add(doorLight, "intensity").min(0).max(3).step(0.1).name("door-light");
