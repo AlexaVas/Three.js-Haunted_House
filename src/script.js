@@ -9,11 +9,36 @@ THREE.ColorManagement.enabled = false
  * Base
  */
 // Debug
-const gui = new dat.GUI()
+let gui;
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
+//While loading 
+
+const body = document.querySelector("body");
+const loadingAnimation = document.createElement("h1");
+loadingAnimation.innerHTML = "Loading... 🏚️";
+body.appendChild(loadingAnimation);
+console.log(loadingAnimation);
+canvas.style.visibility = "collapse";
+
+window.onload = () => {
+  canvas.style.visibility = "visible";
+  loadingAnimation.remove;
+
+  gui = new dat.GUI();
+  gui.add(doorLight, "intensity").min(0).max(3).step(0.1).name("door-light");
+  gui
+    .add(moonLight, "intensity")
+    .min(0)
+    .max(1)
+    .step(0.001)
+    .name("moon-light-intensity");
+};
+  
+    
+//
 // Scene
 const scene = new THREE.Scene()
 
@@ -228,7 +253,7 @@ const ambientLight = new THREE.AmbientLight('#ffffff', 0.15)
 // Directional light
 const moonLight = new THREE.DirectionalLight('lightblue', 0.35)
 moonLight.position.set(4, 5, - 2)
-gui.add(moonLight, 'intensity').min(0).max(1).step(0.001).name('moon-light-intensity')
+// gui.add(moonLight, 'intensity').min(0).max(1).step(0.001).name('moon-light-intensity')
 //gui.add(moonLight.position, 'x').min(- 5).max(5).step(0.001)
 //gui.add(moonLight.position, 'y').min(- 5).max(5).step(0.001)
 //gui.add(moonLight.position, 'z').min(- 5).max(5).step(0.001)
@@ -251,12 +276,12 @@ const doorLightHelper = new THREE.PointLightHelper(doorLight);
 
 //house.add(doorLightHelper);
 
-gui
-.add(doorLight, 'intensity')
-.min(0)
-.max(3)
-.step(0.1)
-.name('door-light');
+// gui
+// .add(doorLight, 'intensity')
+// .min(0)
+// .max(3)
+// .step(0.1)
+// .name('door-light');
 //Fog
 
 const fog = new THREE.Fog("#262837", 5, 15);
@@ -355,6 +380,39 @@ gsap.to(camera.position, {duration:3.5,x:3,y:3,z:5, ease: 'linear'});
 // Controls
 const controls = new OrbitControls(camera, canvas)
 controls.enableDamping = true
+
+// Full-Screen
+
+canvas.addEventListener('dblclick', (e)=>{
+
+    if(!document.fullscreenElement){
+
+        if(canvas.requestFullscreen){
+
+            canvas.requestFullscreen();
+
+        }else if(canvas.webkitRequestFullScreen){
+
+            canvas.webkitRequestFullScreen();
+        }
+        
+    }else{
+
+        if(document.exitFullscreen){
+        document.exitFullscreen();
+        }else if (document.webkitExitFullScreen){
+
+            document.webkitExitFullScreen();
+        }
+    } 
+
+
+
+})
+
+
+
+//
 
 /**
  * Renderer

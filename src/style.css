@@ -8,6 +8,7 @@ html,
 body
 {
     overflow: hidden;
+    background-color: black;
 }
 
 .webgl
@@ -16,4 +17,11 @@ body
     top: 0;
     left: 0;
     outline: none;
+}
+
+h1{
+    text-align: center;
+    margin-top: 50%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:orange;
 }
